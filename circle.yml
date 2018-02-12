@@ -11,4 +11,7 @@ dependencies:
     - mkdir -p ~/docker; docker save codeworksio/ffmpeg > ~/docker/image.tar
 test:
   override:
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS
+    - make build
     - docker run --interactive --tty codeworksio/ffmpeg -version | grep 'ffmpeg version'
+    - make push
