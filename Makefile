@@ -26,7 +26,8 @@ build:
 test:
 	docker run --interactive --tty --rm \
 		$(IMAGE) \
-		-version
+		-version \
+	| grep 'ffmpeg version'
 
 clean:
 	docker rmi $(IMAGE):$(shell cat VERSION) > /dev/null 2>&1 ||:
