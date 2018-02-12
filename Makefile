@@ -24,10 +24,8 @@ build:
 	docker rmi --force $$(docker images | grep "<none>" | awk '{ print $$3 }') 2> /dev/null ||:
 
 test:
-	docker run --interactive --tty --rm \
-		$(IMAGE) \
-		-version \
-	| grep 'ffmpeg version'
+	docker run --interactive --tty --rm $(IMAGE) \
+		-version | grep "ffmpeg version"
 
 clean:
 	docker rmi $(IMAGE):$(shell cat VERSION) > /dev/null 2>&1 ||:
@@ -36,6 +34,7 @@ clean:
 push:
 	docker push $(IMAGE):$(shell cat VERSION)
 	docker push $(IMAGE):latest
+	sleep 10
 	curl --request POST "https://hooks.microbadger.com/images/$(IMAGE)/AYJqUPFduiz2egOUmoCG2EYTbmA="
 
 .SILENT:
