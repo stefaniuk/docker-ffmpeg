@@ -3,7 +3,7 @@ machine:
     - docker
 test:
   override:
-    - yes | docker login -u $DOCKER_USER -p $DOCKER_PASS
+    - yes | docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
     - make build
     - docker run --interactive --tty codeworksio/ffmpeg -version | grep 'ffmpeg version'
     - make push
