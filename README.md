@@ -3,7 +3,7 @@
 Docker FFmpeg
 =============
 
-Docker wrapper around FFmpeg.
+Docker wrapper around `ffmpeg` command.
 
 Installation
 ------------
